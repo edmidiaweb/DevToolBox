@@ -1,0 +1,216 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f7f9;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+h1 {
+    color: #1a73e8;
+}
+
+/* FIXAÇÃO DA CAIXA E RESULTADOS */
+.fixed-panel {
+    position: fixed; 
+    top: 100px;
+    right: 20px;
+    width: 300px; 
+    z-index: 1000;
+    
+    /* CORREÇÃO PARA TELAS GRANDES */
+    max-height: calc(100vh - 120px); 
+    overflow-y: auto; 
+}
+
+/* CAIXA ALVO */
+#target-box {
+    width: 250px;
+    height: 250px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.5s ease-out; 
+    margin-bottom: 20px; 
+}
+
+/* Estilizando o span de texto para Text-Shadow */
+#target-box span {
+    font-size: 2.5em; 
+    font-weight: bold;
+    color: #1a73e8;
+    text-align: center;
+    transition: all 0.5s ease-out;
+}
+
+/* CONTROLES */
+#controls {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); 
+    gap: 20px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 60%;
+    margin-right: 350px; 
+    max-width: 800px;
+}
+
+#controls h2 {
+    grid-column: 1 / -1;
+    color: #1a73e8;
+    margin: 10px 0 5px 0;
+    padding-top: 10px;
+}
+
+#controls hr {
+    grid-column: 1 / -1;
+    border: none;
+    border-top: 1px solid #ccc;
+    margin: 15px 0;
+}
+
+.control-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.control-group label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #444;
+}
+
+.control-group input[type="range"],
+.control-group select {
+    width: 100%;
+    margin-top: 5px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.color-control {
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
+}
+
+/* RESULTADO CSS CONTAINER */
+#css-result-container {
+    background-color: #eee;
+    padding: 15px;
+    border-radius: 8px;
+    width: 100%;
+    margin-top: 10px; 
+}
+
+/* BLOCO DE CÓDIGO (Visibilidade Horizontal e Vertical) */
+#css-code {
+    display: block;
+    white-space: pre-wrap;
+    word-break: break-all;
+    background-color: #333;
+    color: #00ff00;
+    padding: 10px;
+    border-radius: 4px;
+    margin-top: 10px;
+    font-family: monospace;
+    
+    /* CORREÇÃO PARA ROLAGEM INTERNA */
+    max-height: 250px; 
+    overflow-y: auto;  
+}
+
+#copy-button, #addShadowButton, #removeShadowButton {
+    background-color: #1a73e8;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    margin-top: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+#removeShadowButton {
+    background-color: #dc3545;
+}
+#removeShadowButton:disabled {
+    background-color: #adb5bd;
+    cursor: not-allowed;
+}
+
+#copy-button:hover {
+    background-color: #0056b3;
+}
+#addShadowButton:hover {
+    background-color: #0056b3;
+}
+#removeShadowButton:hover:not(:disabled) {
+    background-color: #c82333;
+}
+
+/* --- RESPONSIVIDADE (MEDIA QUERIES) --- */
+
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+
+    /* 1. Mudar o Painel Fixo para ser empilhado (Static) */
+    .fixed-panel {
+        position: static; 
+        width: 100%;
+        margin-bottom: 20px;
+        order: -1; 
+        max-height: none; 
+        overflow-y: visible; 
+    }
+
+    /* 2. Ajustar a Caixa de Teste para ocupar a largura total do painel */
+    #target-box {
+        width: 100%;
+        height: 150px; 
+    }
+    
+    #target-box span {
+        font-size: 1.8em;
+    }
+
+    /* 3. Ajustar o Contêiner de Controles */
+    #controls {
+        grid-template-columns: repeat(2, 1fr); 
+        gap: 15px;
+        width: 100%;
+        margin-right: 0; 
+        padding: 15px;
+    }
+
+    /* 4. Garantir que os Títulos e Separadores ocupem toda a linha */
+    #controls h2, 
+    #controls hr {
+        grid-column: 1 / -1;
+    }
+    
+    .control-group.color-control {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    /* 5. Ajuste de altura do código para telas menores */
+    #css-code {
+        max-height: 150px; 
+    }
+}
