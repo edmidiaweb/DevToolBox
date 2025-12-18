@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIP CSS - Visualizador Interativo de Propriedades CSS</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>VIP CSS: Visualizador Interativo</h1>
+        <p>Ajuste os controles abaixo para manipular **Box-Shadow**, **Border-Radius**, **Transform**, **Filter**, **Transition**, **Opacity**, **Text-Shadow**, **Gradientes** e **Variáveis CSS** em tempo real.</p>
+    </header>
+
+    <div class="fixed-panel">
+        <div id="target-box">
+            <span>VIP CSS!</span>
+        </div>
+        
+        <div id="css-result-container">
+            <h3>Código CSS Gerado:</h3>
+            <code id="css-code"></code>
+            <button id="copy-button">Copiar Código</button>
+        </div>
+    </div>
+    <main>
+        
+        <div id="controls">
+            
+            <h2>Variáveis CSS Customizadas</h2>
+            <div class="control-group">
+                <label for="varPrimaryColor">--cor-primaria:</label>
+                <input type="color" id="varPrimaryColor" value="#cc3399">
+                <span id="varPrimaryColor-value">#cc3399</span>
+            </div>
+            
+            <div class="control-group">
+                <label for="varShadowColor">--cor-sombra:</label>
+                <input type="color" id="varShadowColor" value="#333333">
+                <span id="varShadowColor-value">#333333</span>
+            </div>
+
+            <div class="control-group">
+                <label for="varScaleFactor">--fator-escala:</label>
+                <input type="range" id="varScaleFactor" min="0.5" max="2.0" value="1.0" step="0.05">
+                <span id="varScaleFactor-value">1.0</span>
+            </div>
+
+            <hr>
+
+            <h2>Múltiplas Sombras (Box-Shadow)</h2>
+            <div id="shadow-controls-container" style="grid-column: 1 / -1;">
+                </div>
+            <div style="grid-column: 1 / -1; display: flex; gap: 10px; margin-top: 10px;">
+                <button id="addShadowButton" type="button">➕ Adicionar Sombra</button>
+                <button id="removeShadowButton" type="button" disabled>➖ Remover Sombra</button>
+            </div>
+            
+            <hr>
+
+            <h2>Cantos (Border-Radius)</h2>
+            <div class="control-group">
+                <label for="radiusTopLeft">Canto Superior Esquerdo (px):</label>
+                <input type="range" id="radiusTopLeft" min="0" max="100" value="12">
+                <span id="radiusTopLeft-value">12</span>
+            </div>
+
+            <div class="control-group">
+                <label for="radiusTopRight">Canto Superior Direito (px):</label>
+                <input type="range" id="radiusTopRight" min="0" max="100" value="12">
+                <span id="radiusTopRight-value">12</span>
+            </div>
+
+            <div class="control-group">
+                <label for="radiusBottomRight">Canto Inferior Direito (px):</label>
+                <input type="range" id="radiusBottomRight" min="0" max="100" value="12">
+                <span id="radiusBottomRight-value">12</span>
+            </div>
+
+            <div class="control-group">
+                <label for="radiusBottomLeft">Canto Inferior Esquerdo (px):</label>
+                <input type="range" id="radiusBottomLeft" min="0" max="100" value="12">
+                <span id="radiusBottomLeft-value">12</span>
+            </div>
+
+            <hr>
+
+            <h2>Transformação (Rotate/Scale)</h2>
+            <div class="control-group">
+                <label for="rotateAngle">Rotação (graus):</label>
+                <input type="range" id="rotateAngle" min="-180" max="180" value="0">
+                <span id="rotateAngle-value">0</span>
+            </div>
+
+            <div class="control-group" style="visibility: hidden;">
+                <label for="scaleFactor">Escala (Fator - OBSOLETO):</label>
+                <input type="range" id="scaleFactor" min="0.5" max="2.0" value="1.0" step="0.05">
+                <span id="scaleFactor-value">1.0</span>
+            </div>
+            
+            <hr>
+
+            <h2>Filtros (Filter)</h2>
+            <div class="control-group">
+                <label for="filterBlur">Desfoque (Blur - px):</label>
+                <input type="range" id="filterBlur" min="0" max="10" value="0" step="0.5">
+                <span id="filterBlur-value">0</span>
+            </div>
+
+            <div class="control-group">
+                <label for="filterBrightness">Brilho (Brightness - %):</label>
+                <input type="range" id="filterBrightness" min="0" max="200" value="100" step="10">
+                <span id="filterBrightness-value">100</span>
+            </div>
+            
+            <hr>
+            
+            <h2>Fundo (Gradientes)</h2>
+            
+            <div class="control-group">
+                <label for="gradientType">Tipo de Gradiente:</label>
+                <select id="gradientType">
+                    <option value="linear">Linear</option>
+                    <option value="radial">Radial</option>
+                </select>
+                <span id="gradientType-value">Linear</span>
+            </div>
+
+            <div class="control-group">
+                <label for="gradientAngle">Ângulo (Linear - deg):</label>
+                <input type="range" id="gradientAngle" min="0" max="360" value="90">
+                <span id="gradientAngle-value">90</span>
+            </div>
+            
+            <div class="control-group">
+                <label for="stop1">Posição (Stop 1 - %):</label>
+                <input type="range" id="stop1" min="0" max="100" value="0">
+                <span id="stop1-value">0</span>
+            </div>
+
+            <div class="control-group">
+                <label for="stop2">Posição (Stop 2 - %):</label>
+                <input type="range" id="stop2" min="0" max="100" value="100">
+                <span id="stop2-value">100</span>
+            </div>
+            
+            <hr>
+
+            <h2>Opacidade e Sombra de Texto</h2>
+            <div class="control-group">
+                <label for="opacityValue">Opacidade (Opacity):</label>
+                <input type="range" id="opacityValue" min="0" max="1.0" value="1.0" step="0.05">
+                <span id="opacityValue-value">1.0</span>
+            </div>
+
+            <div class="control-group">
+                <label for="textShadowX">Sombra de Texto X (px):</label>
+                <input type="range" id="textShadowX" min="-10" max="10" value="2">
+                <span id="textShadowX-value">2</span>
+            </div>
+            
+            <div class="control-group">
+                <label for="textShadowY">Sombra de Texto Y (px):</label>
+                <input type="range" id="textShadowY" min="-10" max="10" value="2">
+                <span id="textShadowY-value">2</span>
+            </div>
+            
+            <div class="control-group color-control">
+                <label for="textShadowColor">Cor da Sombra de Texto:</label>
+                <input type="color" id="textShadowColor" value="#121212">
+                <span id="textShadowColor-value">#121212</span>
+            </div>
+
+            <hr>
+
+            <h2>Transição (Transition)</h2>
+            <div class="control-group">
+                <label for="transitionDuration">Duração (segundos):</label>
+                <input type="range" id="transitionDuration" min="0" max="3.0" value="0.5" step="0.1">
+                <span id="transitionDuration-value">0.5</span>
+            </div>
+
+            <div class="control-group">
+                <label for="transitionTimingFunction">Função de Temporização (Easing):</label>
+                <select id="transitionTimingFunction">
+                    <option value="ease">ease (padrão)</option>
+                    <option value="linear">linear</option>
+                    <option value="ease-in">ease-in</option>
+                    <option value="ease-out">ease-out</option>
+                    <option value="ease-in-out">ease-in-out</option>
+                </select>
+                <span id="transitionTimingFunction-value">ease</span>
+            </div>
+
+        </div>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

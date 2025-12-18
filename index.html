@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevToolBox</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <i class="fas fa-layer-group logo-icon"></i>
+            <span>DevToolBox</span>
+        </div>
+        
+        <nav class="menu">
+            <p class="menu-label">Ferramentas</p>
+            <ul>
+                <li>
+                    <a href="#" class="nav-item active" data-path="gerador LD/index.html">
+                        <i class="fas fa-magic"></i> 
+                        <span>Gerador de LP</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="nav-item" data-path="carrossel/index.html">
+                        <i class="fas fa-images"></i> 
+                        <span>Carrossel JS</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="nav-item" data-path="VIP CSS/index.html">
+                        <i class="fas fa-css3-alt"></i> 
+                        <span>VIP CSS Lab</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="sidebar-footer">
+            <p>v1.0.0</p>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <header class="top-bar">
+            <h2 id="current-tool-title">Gerador de Landing Pages</h2>
+            <div class="user-info">
+                <i class="fas fa-user-circle"></i>
+            </div>
+        </header>
+        
+        <div class="iframe-container">
+            <iframe id="content-frame" src="gerador LD/index.html" frameborder="0"></iframe>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
